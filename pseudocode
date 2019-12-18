@@ -1,0 +1,8 @@
+what do I need?
+    *make player movement correspond with user imput
+    *create obstacles that fall ??randomly?? but with increasing difficulty
+    *maybe other stationary obstacles 
+    *detect when an obstacle touches the player
+    *associate movement with a change in character image (cycle between two images)
+    *count how many "feet" the player has climbed
+    
