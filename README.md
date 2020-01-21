@@ -12,7 +12,7 @@ Excellent work will include:
 
 * Clean, well-written, effective code
 * Version control in Git
-* Clear documentation of how te code works
+* Clear documentation of how the code works
 * A presentation of the game and of the process of creating it
 * Citations (MLA format) of the resources you used.
 
