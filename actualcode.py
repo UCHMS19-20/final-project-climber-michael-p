@@ -16,6 +16,9 @@ x_move = 0
 #player_x = 50
 #player_y = 50
 
+#obstacles
+boulders = [pygame.Rect(random.randint(0,600), 0, random.randint(10,20), random.randint(10,20))]
+
 #difficulty
 nice_mode = True
 
@@ -43,6 +46,12 @@ while True:
         #display character
     pygame.draw.rect(screen, pygame.Color("red"), player_rect)
 
+    #update boulder position
+    boulders[0].y += 1
+
+#draw boulder
+    pygame.draw.rect(screen, pygame.Color("white"), boulders[0])
+    
         #updates display so we can see
     pygame.display.flip()
 
