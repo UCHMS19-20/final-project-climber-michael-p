@@ -39,6 +39,9 @@ while True:
                 x_move = 1
         if event.type == pygame.KEYUP and nice_mode:
             x_move = 0
+        if event.type == pygame.MOUSEBUTTONDOWN:
+           #this will change
+            boulder.append(pygame.Rect()
         
         #updates x-position of player.rect
     player_rect.x += x_move
@@ -47,11 +50,12 @@ while True:
     pygame.draw.rect(screen, pygame.Color("red"), player_rect)
 
     #update boulder position
-    boulders[0].y += 1
-
+    for boulder in boulder:
+     boulders.y += 1
     #check for collisions
-    if boulders[0].colliderect(player_rect):
-        print("HAHA You Lose!")
+    if boulders.colliderect(player_rect):
+                print("HAHA You Lose!")
+    
 
 
 #draw boulder
