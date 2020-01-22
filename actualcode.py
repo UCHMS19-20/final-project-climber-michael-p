@@ -49,10 +49,15 @@ while True:
     #update boulder position
     boulders[0].y += 1
 
+    #check for collisions
+    if boulders[0].colliderect(player_rect):
+        print("HAHA You Lose!")
+
+
 #draw boulder
     pygame.draw.rect(screen, pygame.Color("white"), boulders[0])
     
-        #updates display so we can see
+#updates display so we can see
     pygame.display.flip()
 
 
