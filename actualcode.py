@@ -12,12 +12,24 @@ screen = pygame.display.set_mode((400,800))
     #create player
 player_rect = pygame.Rect(200,200,50,100)
 
+font = pygame.font.SysFont("Arial",50)
+text = font.render("YOU LOSE!", True, (255,0,0))
+
 x_move = 0
 #player_x = 50
 #player_y = 50
 
+lost = False
+
 #obstacles
-boulders = [pygame.Rect(random.randint(0,600), 0, random.randint(10,20), random.randint(10,20))]
+
+
+def generate_boulders():
+    sz = random.randint(5,20)
+    rect = pygame.Rect(random.randint(0,400 - sz), 0, sz, sz)
+    return rect
+
+boulders = [generate_boulders()]
 
 #difficulty
 nice_mode = True
@@ -26,6 +38,10 @@ nice_mode = True
 while True:
     #clear screen by redrawing background
     screen.fill(pygame.Color("black"))
+    if lost:
+        screen.blit(text,(75
+        ,10))
+
     #processing event queue
     for event in pygame.event.get():
        #ends game if x button is clicked
@@ -41,25 +57,35 @@ while True:
             x_move = 0
         if event.type == pygame.MOUSEBUTTONDOWN:
            #this will change
-            boulder.append(pygame.Rect()
+            boulders.append(generate_boulders())
         
         #updates x-position of player.rect
-    player_rect.x += x_move
+    if not lost:
+        player_rect.x += x_move
+        if player_rect.x < 0:
+            player_rect.x = 0
+        if player_rect.x > 400 - player_rect.w:
+            player_rect.x = 400 - player_rect.w
+    
 
         #display character
     pygame.draw.rect(screen, pygame.Color("red"), player_rect)
 
     #update boulder position
-    for boulder in boulder:
-     boulders.y += 1
+    # print(f"Player: {player_rect.x}, {player_rect.y}")
+    for boulder in boulders:
+        if not lost:
+            boulder.y += 1
+        # print(f"Boulder: {boulder.x}, {boulder.y}")
     #check for collisions
-    if boulders.colliderect(player_rect):
-                print("HAHA You Lose!")
-    
+        if boulder.colliderect(player_rect):
+            print("HAHA You Lose!")
+            lost = True
+
 
 
 #draw boulder
-    pygame.draw.rect(screen, pygame.Color("white"), boulders[0])
+        pygame.draw.rect(screen, pygame.Color("white"), boulder)
     
 #updates display so we can see
     pygame.display.flip()
